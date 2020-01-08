@@ -16,6 +16,7 @@ function App() {
     const [curDate, setCurDate]= useState('');
     const [expl, setExpl]= useState('');
     const [title, setTitle]= useState('');
+    const [errMessage, setErrMessage]= useState('');
 
     useEffect(() => {
         axios
@@ -27,9 +28,11 @@ function App() {
             setCurDate(res.data.date);
             setExpl(res.data.explanation);
             setTitle(res.data.title);
+            setErrMessage('');
         })
         .catch(err => {
             console.log('Initial Call Error: ', err);
+            setErrMessage('Cannot view "future" images. Time machine pending...');
         }) 
         
     }, [curDate]);
@@ -39,23 +42,29 @@ function App() {
         
     }//end func
 
-    return (
-        <div className="App">
-            <h1>Nasa: Astronomy Picture of the Day.</h1>
-            <form className='dateCont'>
-                <input onChange={(e) => {change(e)}} type='date' id= 'dat' defaultValue= {curDate} />
-            </form>
-            
+    if(!title){
+        return <h3>Loading ...</h3>
+    }else{
+        return (
+            <div className="App">
+                <h1>Nasa: Astronomy Picture of the Day.</h1>
+                <form className='dateCont'>
+                    <span className= 'dateTitle'>Change Date: </span>
+                    <input title='Pick a Date to View Another Image' onChange={(e) => {change(e)}} type='date' id= 'dat' defaultValue= {curDate} />
+                    <div className= 'errorCont'>{errMessage}</div>
+                </form>
+                
 
-            <div className= "mainContent">
-                <Image date= {curDate} imgUrl= {imgUrl} hdUrl={hdUrl} copy= {copy} />
-                <Info title= {title} expl= {expl} />
+                <div className= "mainContent">
+                    <Image date= {curDate} imgUrl= {imgUrl} hdUrl={hdUrl} copy= {copy} />
+                    <Info title= {title} expl= {expl} />
+                </div>
+                
             </div>
             
-        </div>
-        
 
-    );
+        );
+    }//end if
     
     
 

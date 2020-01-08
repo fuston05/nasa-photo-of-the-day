@@ -4,8 +4,10 @@
     width: 50%;
 }
 
-.infoCont h2{
-
+@media only screen and (max-width: 600px){
+    .infoCont{
+        width: 100%;
+    }
 }
 
 .infoCont p{
