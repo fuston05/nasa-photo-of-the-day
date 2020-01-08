@@ -1,0 +1,22 @@
+.imageCont{
+    max-width: 100%;
+    width: 35%;
+    position: relative;
+}
+
+img{
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+}
+
+a span{
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    color: white;
+    padding: 1%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 5xp;
+    font-size: 0.5rem;
+}

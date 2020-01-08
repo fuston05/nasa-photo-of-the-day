@@ -1,0 +1,13 @@
+.infoCont{
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    max-width: 100%;
+    width: 50%;
+}
+
+.infoCont h2{
+
+}
+
+.infoCont p{
+    font-size: 1.3rem;
+}
