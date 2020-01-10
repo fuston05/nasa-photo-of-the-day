@@ -9,7 +9,7 @@ body {
         sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-image: url('./components/Image/nasa.png');
+    background-image: url('./components/Image/nasa.jpg');
     background-repeat: no-repeat;
     background-size: cover;
 }

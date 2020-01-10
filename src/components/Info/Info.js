@@ -12,12 +12,18 @@ const InfoCont= styled.div`
     }
 
     h2{
-        color: #999;
+        color: #333;
+        padding: 1%;
+        background-color: rgba(200, 200, 255, 0.6);
+        border-radius: 5px;
     }
 
     p{
         font-size: 1.3rem;
-        color: #eee;
+        color: #ccc;
+        padding: 2%;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 5px;
     }
 `;
 
