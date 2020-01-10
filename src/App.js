@@ -3,10 +3,10 @@ import axios from 'axios';
 
 import Image from './components/Image/Image';
 import Info from './components/Info/Info';
-import styled from 'styled-components';
+// import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const Application= styled.div`
-
     max-width: 100%;
     width: 100%;
     padding: 2%;

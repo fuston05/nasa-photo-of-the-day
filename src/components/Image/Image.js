@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const ImageCont= styled.div`
     max-width: 100%;

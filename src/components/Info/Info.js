@@ -1,5 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 const InfoCont= styled.div`
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
