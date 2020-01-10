@@ -11,8 +11,13 @@ const InfoCont= styled.div`
             width: 100%;
     }
 
+    h2{
+        color: #999;
+    }
+
     p{
         font-size: 1.3rem;
+        color: #eee;
     }
 `;
 

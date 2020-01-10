@@ -6,7 +6,8 @@ import Info from './components/Info/Info';
 // import styled from 'styled-components';
 import styled from '@emotion/styled';
 
-const Application= styled.div`
+//same code for Emotion and styled components
+const Application= styled.div` 
     max-width: 100%;
     width: 100%;
     padding: 2%;
@@ -16,6 +17,7 @@ const Application= styled.div`
     justify-content: space-evenly;
 
     h1{
+        color: #eee;
         margin: 0 0 3% 0;
     }
 
@@ -48,6 +50,10 @@ const Application= styled.div`
     padding: 0 0 2% 0;
 }
 
+.dateTitle{
+    color: #999;
+}
+
 .dateCont input{
     padding: 3px;
     font-size: 1.2rem;
@@ -74,8 +80,6 @@ const Application= styled.div`
         flex-direction: column-reverse;    
     }
 }
-
-
 `;
 
 function App() {
