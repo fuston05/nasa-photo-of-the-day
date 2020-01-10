@@ -113,30 +113,40 @@ function App() {
     const [title, setTitle] = useState('');
     const [errMessage, setErrMessage] = useState('');
 
+    
+
     //get a random day/month/year
-    let minDay= 1;
-    let maxDay= 28;
-    function randDayNum(min, max){
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min) +1) + min;
-    }//end func
+   function getRandomDate(){
+       //vars for getting random date
+        const minYear= 2000;
+        const maxYear= 2019;
+        const minMonth= 1;
+        const maxMonth= 12;
+        const minDay= 1;
+        const maxDay= 28;
 
-        let minMonth= 1;
-        let maxMonth= 12;
-        function randMonthNum(min, max){
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min +1)) + min;
-        }//end func
+        let month= Math.floor(Math.random() * (maxMonth - minMonth +1)) + minMonth;
+        let year= Math.floor(Math.random() * (maxYear - minYear +1)) + minYear;
+        let day= Math.floor(Math.random() * (maxDay - minDay +1)) + minDay;
 
-        let minYear= 2000;
-        let maxYear= 2019;
-        function randYearNum(min, max){
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min +1)) + min;
-        }//end func
+        return `${year}-${month}-${day}`;
+
+   }//end getRandomDate
+
+    
+        
+        // function randMonthNum(min, max){
+        //     min = Math.ceil(min);
+        //     max = Math.floor(max);
+        //     return Math.floor(Math.random() * (max - min +1)) + min;
+        // }//end func
+
+        
+        // function randYearNum(min, max){
+        //     min = Math.ceil(min);
+        //     max = Math.floor(max);
+        //     return Math.floor(Math.random() * (max - min +1)) + min;
+        // }//end func
         
     useEffect(() => {
         axios
@@ -152,15 +162,13 @@ function App() {
             })
             .catch(err => {
                 // console.log('API Error: ', err);
-                setErrMessage('Cannot view "future" images. Time machine pending...');
+                setErrMessage('There may not be a photo for this day, try again.');
             })
         
     }, [curDate]);
     useEffect(() => {
-        console.log('res url: ', imgUrl);
-        const varDateStr= `${randYearNum(minYear, maxYear)}-${randMonthNum(minMonth, maxMonth)}-${randDayNum(minDay, maxDay)}`;
         axios
-        .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${varDateStr}`)
+        .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${getRandomDate()}`)
         .then(newRes => {
             //change bg image to a random image from api
             document.body.style.backgroundImage= `url(${newRes.data.url})`;
@@ -177,7 +185,6 @@ function App() {
 
     let isVid= false;
     if( imgUrl.slice(-4) === '.jpg' ){
-        console.log('jpg');
         isVid= false;
     }else{
         console.log('not a jpg');
@@ -199,9 +206,6 @@ function App() {
 
                 <div className="mainContent">
                     <Media isVid= {isVid} date={curDate} imgUrl={imgUrl} hdUrl={hdUrl} copy={copy} />
-                    
-                    
-                    
                     <Info title={title} expl={expl} />
                 </div>
                 
