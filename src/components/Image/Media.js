@@ -2,7 +2,7 @@ import React from 'react';
 // import styled from 'styled-components';
 import styled from '@emotion/styled';
 
-const MediaCont= styled.div`
+const MediaCont = styled.div`
     max-width: 100%;
     width: 35%;
     position: relative;
@@ -48,31 +48,31 @@ const MediaCont= styled.div`
 
 function Media(props) {
 
-    if( props.isVid ){
+   if (props.isVid) {
 
-        return (
-            
-            <MediaCont>
-                <iframe width="420" height="315"
-                    src={props.imgUrl}>
-                </iframe>
-            </MediaCont>
-        );
+      return (
 
-    }else{
+         <MediaCont>
+            <iframe title= 'Video Player' width="420" height="315"
+               src={props.imgUrl}>
+            </iframe>
+         </MediaCont>
+      );
 
-        return (
-            <MediaCont>
-                <a title='Click to View HD Image' href={props.hdUrl} target='_blank' rel='noopener noreferrer'>
-                    <span className='copy'>Copyright &copy; {props.date} {props.copy}</span>
-                    <img alt='Nasa' src={props.imgUrl} />
-                </a>
-            </MediaCont>
-        );
+   } else {
 
-    }//end if
+      return (
+         <MediaCont>
+            <a title='Click to View HD Image' href={props.hdUrl} target='_blank' rel='noopener noreferrer'>
+               <span className='copy'>Copyright &copy; {props.date} {props.copy}</span>
+               <img alt='Nasa' src={props.imgUrl} />
+            </a>
+         </MediaCont>
+      );
 
-    
+   }//end if
+
+
 }//end func
 
 export default Media;
