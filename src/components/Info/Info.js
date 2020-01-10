@@ -1,13 +1,27 @@
 import React from 'react';
-import './Info.css';
+import styled from 'styled-components';
+
+const InfoCont= styled.div`
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    max-width: 100%;
+    width: 50%;
+
+    @media only screen and (max-width: 600px){
+            width: 100%;
+    }
+
+    p{
+        font-size: 1.3rem;
+    }
+`;
 
 function Info(props) {
 
     return (
-        <div className='infoCont'>
+        <InfoCont>
             <h2>{props.title}</h2>
             <p>{props.expl}</p>
-        </div>
+        </InfoCont>
     );
 }//end func
 
