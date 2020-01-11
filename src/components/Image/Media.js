@@ -3,47 +3,50 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 const MediaCont = styled.div`
-    max-width: 100%;
-    width: 35%;
-    position: relative;
-    box-shadow: 2px 2px 2px #333;
-    text-align: center;
+   max-width: 100%;
+   width: 35%;
+   position: relative;
+   box-shadow: 2px 2px 2px #333;
+   text-align: center;
 
-    @media only screen and (max-width: 600px){
-            width: 100%;
-            margin-top: 8%;
-    }
+   @media only screen and (max-width: 600px){
+         width: 100%;
+         margin-top: 8%;
+   }
 
-    iframe{
-        max-width: 100%;
-        margin: 0 auto;
-    }
+   iframe{
+      max-width: 100%;
+      margin: 0 auto;
+   }
 
-    img{
-        max-width: 100%;
-        width: 100%;
-        height: auto;
-    }
+   img{
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      &:hover{
+      cursor: pointer; opacity: 0.8;
+   }
+   }
 
-    .copy{
-        position: absolute;
-        bottom: 5px;
-        left: 5px;
-        color: white;
-        padding: 1%;
-        background-color: rgba(0, 0, 0, 0.6);
-        border-radius: 5xp;
-        font-size: 0.5rem;
+   .copy{
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      color: white;
+      padding: 1%;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 5xp;
+      font-size: 0.5rem;
 
-        @media only screen and (max-width: 600px){
-            font-size: 1rem;
-        }
-    }
+      @media only screen and (max-width: 600px){
+         font-size: 1rem;
+      }
+   }
 
-    .errorCont{
-        color: red;
-        padding: 2px;
-    }
+   .errorCont{
+      color: red;
+      padding: 2px;
+   }
 `;
 
 function Media(props) {
@@ -53,7 +56,7 @@ function Media(props) {
       return (
 
          <MediaCont>
-            <iframe title= 'Video Player' width="420" height="315"
+            <iframe title='Video Player' width="420" height="315"
                src={props.imgUrl}>
             </iframe>
          </MediaCont>

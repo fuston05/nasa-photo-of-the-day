@@ -25,7 +25,7 @@ const Application = styled.div`
       height: 100vh;
       max-height: 100vh;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0, 0, 0, 0.7);
       z-index: -1;
    } 
 
@@ -180,25 +180,27 @@ function App() {
          })
 
    }, [curDate]);
+
    useEffect(() => {
-      axios
-         .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${getRandomDate()}`)
-         .then(newRes => {
-            //change bg image to a random image from api
-            document.body.style.backgroundImage = `url(${newRes.data.url})`;
-            document.body.style.backgroundSize = 'cover';
-         })
-         .catch(err => {
-            console.log('background image fetcher error:', err);
-         })
-   }, [curDate])
+      window.onload= 
+         axios
+            .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${getRandomDate()}`)
+            .then(newRes => {
+               //change bg image to a random image from api
+               document.body.style.backgroundImage = `url(${newRes.data.url})`;
+               document.body.style.backgroundSize = 'cover';
+            })
+            .catch(err => {
+               console.log('background image fetcher error:', err);
+            });
+      }, []);
 
    function change(e) {
       setCurDate(e.target.value);
    }//end func
 
    let isVid = false;
-   if (imgUrl.slice(-4) === '.jpg') {
+   if (imgUrl.slice(-4) === '.jpg' || imgUrl.slice(-4) === '.gif') {
       isVid = false;
    } else {
       isVid = true;
