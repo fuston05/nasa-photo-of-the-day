@@ -187,13 +187,13 @@ function App() {
   }, []);
 
   function changeDate(e){
-    document.querySelector('.randomButton').disabled= 'true';
+    document.querySelector('.randomButton').setAttribute('disabled', true);
     setCurDate(getRandomDate());
   }
 
   function change(e) {
     //disabel button to avoid spamming which causes a loop effect
-    
+    e.target.setAttribute('disabled', true);
     setCurDate(e.target.value);
   }//end func
 
