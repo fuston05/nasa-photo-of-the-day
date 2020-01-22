@@ -161,6 +161,8 @@ function App() {
         setTitle(resu.data.title);
         setErrMessage('');
         document.querySelector('.datePicker').removeAttribute('disabled');
+        document.querySelector('.randomButton').removeAttribute('disabled');
+
       })
       .catch(err => {
         console.log('API Error: ', err.response.status);
@@ -182,9 +184,14 @@ function App() {
         });
   }, []);
 
+  function changeDate(e){
+    document.querySelector('.randomButton').disabled= 'true';
+    setCurDate(getRandomDate());
+  }
+
   function change(e) {
     //disabel button to avoid spamming which causes a loop effect
-    document.querySelector('.datePicker').disabled= 'true';
+    
     setCurDate(e.target.value);
   }//end func
 
@@ -207,8 +214,9 @@ function App() {
 
           <input className= 'datePicker' value= {curDate} title='Pick a Date to View Another Image' onChange={(e) => { change(e) }} type='date' id='dat' />
 
-          {/* <span onClick={(e) => { changeImage() }} className='randomButton'>Random Date & Image</span> */}
-
+          <span>
+            <button className='randomButton' onClick={(e) => { changeDate(e) }}>Random Date & Image</button>
+          </span>
           <div className='errorCont'>{errMessage}</div>
         </form>
 
