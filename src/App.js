@@ -118,10 +118,16 @@ const Application = styled.div`
 `;
 
 function App() {
+  let newDate= new Date(); //get current Date
+  let yr= newDate.getFullYear().toString();
+  let mon= (newDate.getMonth()+1).toString().padStart(2, '0');
+  let day= newDate.getDate().toString();
+  let formattedDate= `${yr}-${mon.padStart(2, '0')}-${day.padStart(2, '0')}`;
+
   const [imgUrl, setImgUrl] = useState('');
   const [hdUrl, setHdUrl] = useState('');
   const [copy, setCopy] = useState('');
-  const [curDate, setCurDate] = useState('');
+  const [curDate, setCurDate] = useState(formattedDate.toString());
   const [expl, setExpl] = useState('');
   const [title, setTitle] = useState('');
   const [errMessage, setErrMessage] = useState('');
@@ -143,26 +149,26 @@ function App() {
     return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
   }//end getRandomDate
 
-  function changeImage() {
+  useEffect( () => {
     axios
       .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${curDate}`)
-      .then(res => {
-        setImgUrl(res.data.url);
-        setHdUrl(res.data.hdurl);
-        setCopy(res.data.copy);
-        setCurDate(res.data.date);
-        setExpl(res.data.explanation);
-        setTitle(res.data.title);
+      .then(resu => {
+        setImgUrl(resu.data.url);
+        setHdUrl(resu.data.hdurl);
+        setCopy(resu.data.copy);
+        setCurDate(resu.data.date);
+        setExpl(resu.data.explanation);
+        setTitle(resu.data.title);
         setErrMessage('');
-        console.log('res: ', res);
+        document.querySelector('.datePicker').removeAttribute('disabled');
       })
       .catch(err => {
         console.log('API Error: ', err.response.status);
         setErrMessage('There may not be a photo for this day, try again.');
       })
-  };
+    }, [curDate])
 
-  useEffect(() => {
+  useEffect(() => { //set initial state of BG image
     window.onload =
       axios
         .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${getRandomDate()}`)
@@ -171,29 +177,15 @@ function App() {
           document.body.style.backgroundImage = `url(${newRes.data.url})`;
           document.body.style.backgroundSize = 'cover';
         })
-        .then( () => { //set initial image with description etc..
-          axios
-          .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=`)
-          .then( (res) => {
-            setImgUrl(res.data.url);
-            setHdUrl(res.data.hdurl);
-            setCopy(res.data.copy);
-            setCurDate(res.data.date);
-            setExpl(res.data.explanation);
-            setTitle(res.data.title);
-            setErrMessage('');
-          })
-        })
         .catch(err => {
           console.log('background image fetcher error:', err);
         });
   }, []);
 
   function change(e) {
-    // console.log('change func called');
+    //disabel button to avoid spamming which causes a loop effect
+    document.querySelector('.datePicker').disabled= 'true';
     setCurDate(e.target.value);
-    // console.log("target value: ", e.target.value);
-    changeImage();
   }//end func
 
   //check if img or vid
@@ -211,7 +203,7 @@ function App() {
         <form className='dateCont'>
           <span className='dateTitle'>Change Date: </span>
 
-          <input value={curDate} title='Pick a Date to View Another Image' onChange={(e) => { change(e) }} type='date' id='dat' />
+          <input className= 'datePicker' value= {curDate} title='Pick a Date to View Another Image' onChange={(e) => { change(e) }} type='date' id='dat' />
 
           {/* <span onClick={(e) => { changeImage() }} className='randomButton'>Random Date & Image</span> */}
 
