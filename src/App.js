@@ -168,7 +168,7 @@ function App() {
       })
     }, [curDate])
 
-  useEffect(() => { //set initial state of BG image
+  useEffect(() => { //set initial state of BG image..
     window.onload =
       axios
         .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${getRandomDate()}`)
@@ -190,7 +190,9 @@ function App() {
 
   //check if img or vid
   let isVid = false;
-  if (imgUrl.slice(-4) === '.jpg' || imgUrl.slice(-4) === '.gif') {
+  if (imgUrl.slice(-4) === '.jpg' || 
+    imgUrl.slice(-4) === '.gif' || 
+    imgUrl.slice(-4) === '.png') {
     isVid = false;
   } else {
     isVid = true;

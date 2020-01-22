@@ -14,6 +14,16 @@ const MediaCont = styled.div`
          margin-top: 8%;
    }
 
+   a{
+     z-index: 2;
+     opacity: 1;
+
+     &:hover{
+      cursor: pointer; 
+      opacity: 0.8;
+      }
+   }
+
    iframe{
       max-width: 100%;
       margin: 0 auto;
@@ -23,9 +33,6 @@ const MediaCont = styled.div`
       max-width: 100%;
       width: 100%;
       height: auto;
-      &:hover{
-      cursor: pointer; opacity: 0.8;
-   }
    }
 
    .copy{
