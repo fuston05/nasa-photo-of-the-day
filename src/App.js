@@ -118,54 +118,63 @@ const Application = styled.div`
 `;
 
 function App() {
-   const [imgUrl, setImgUrl] = useState('');
-   const [hdUrl, setHdUrl] = useState('');
-   const [copy, setCopy] = useState('');
-   const [curDate, setCurDate] = useState('');
-   const [expl, setExpl] = useState('');
-   const [title, setTitle] = useState('');
-   const [errMessage, setErrMessage] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
+  const [hdUrl, setHdUrl] = useState('');
+  const [copy, setCopy] = useState('');
+  const [curDate, setCurDate] = useState('');
+  const [expl, setExpl] = useState('');
+  const [title, setTitle] = useState('');
+  const [errMessage, setErrMessage] = useState('');
 
+  //get a random day/month/year
+  function getRandomDate() {
+    //vars for getting random date
+    const minYear = 2000;
+    const maxYear = 2019;
+    const minMonth = 1;
+    const maxMonth = 12;
+    const minDay = 1;
+    const maxDay = 28;
 
+    let month = Math.floor(Math.random() * (maxMonth - minMonth + 1)) + minMonth;
+    let year = Math.floor(Math.random() * (maxYear - minYear + 1)) + minYear;
+    let day = Math.floor(Math.random() * (maxDay - minDay + 1)) + minDay;
 
-   //get a random day/month/year
-   function getRandomDate() {
-      //vars for getting random date
-      const minYear = 2000;
-      const maxYear = 2019;
-      const minMonth = 1;
-      const maxMonth = 12;
-      const minDay = 1;
-      const maxDay = 28;
+    return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
+  }//end getRandomDate
 
-      let month = Math.floor(Math.random() * (maxMonth - minMonth + 1)) + minMonth;
-      let year = Math.floor(Math.random() * (maxYear - minYear + 1)) + minYear;
-      let day = Math.floor(Math.random() * (maxDay - minDay + 1)) + minDay;
-
-      return `${year}-${month}-${day}`;
-   }//end getRandomDate
-
-   function getRandomImage(){
-      axios
-      .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${getRandomDate()}`)
+  function changeImage() {
+    axios
+      .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${curDate}`)
       .then(res => {
-         setImgUrl(res.data.url);
-         setHdUrl(res.data.hdurl);
-         setCopy(res.data.copy);
-         setCurDate(res.data.date);
-         setExpl(res.data.explanation);
-         setTitle(res.data.title);
-         setErrMessage('');
+        setImgUrl(res.data.url);
+        setHdUrl(res.data.hdurl);
+        setCopy(res.data.copy);
+        setCurDate(res.data.date);
+        setExpl(res.data.explanation);
+        setTitle(res.data.title);
+        setErrMessage('');
+        console.log('res: ', res);
       })
       .catch(err => {
-         console.log('Random Image Error: ', err);
+        console.log('API Error: ', err.response.status);
+        setErrMessage('There may not be a photo for this day, try again.');
       })
-   }//end getRandomImage
+  };
 
-   useEffect(() => {
+  useEffect(() => {
+    window.onload =
       axios
-         .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${curDate}`)
-         .then(res => {
+        .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${getRandomDate()}`)
+        .then(newRes => { //set random BG image on load
+          //change bg image to a random image from api
+          document.body.style.backgroundImage = `url(${newRes.data.url})`;
+          document.body.style.backgroundSize = 'cover';
+        })
+        .then( () => { //set initial image with description etc..
+          axios
+          .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=`)
+          .then( (res) => {
             setImgUrl(res.data.url);
             setHdUrl(res.data.hdurl);
             setCopy(res.data.copy);
@@ -173,62 +182,51 @@ function App() {
             setExpl(res.data.explanation);
             setTitle(res.data.title);
             setErrMessage('');
-         })
-         .catch(err => {
-            // console.log('API Error: ', err);
-            setErrMessage('There may not be a photo for this day, try again.');
-         })
+          })
+        })
+        .catch(err => {
+          console.log('background image fetcher error:', err);
+        });
+  }, []);
 
-   }, [curDate]);
+  function change(e) {
+    // console.log('change func called');
+    setCurDate(e.target.value);
+    // console.log("target value: ", e.target.value);
+    changeImage();
+  }//end func
 
-   useEffect(() => {
-      window.onload= 
-         axios
-            .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${getRandomDate()}`)
-            .then(newRes => {
-               //change bg image to a random image from api
-               document.body.style.backgroundImage = `url(${newRes.data.url})`;
-               document.body.style.backgroundSize = 'cover';
-            })
-            .catch(err => {
-               console.log('background image fetcher error:', err);
-            });
-      }, []);
+  //check if img or vid
+  let isVid = false;
+  if (imgUrl.slice(-4) === '.jpg' || imgUrl.slice(-4) === '.gif') {
+    isVid = false;
+  } else {
+    isVid = true;
+  }
 
-   function change(e) {
-      setCurDate(e.target.value);
-   }//end func
+    return (
+      <Application>
+        <div className='cover'></div>
+        <h1>Nasa: Astronomy Picture of the Day.</h1>
+        <form className='dateCont'>
+          <span className='dateTitle'>Change Date: </span>
 
-   let isVid = false;
-   if (imgUrl.slice(-4) === '.jpg' || imgUrl.slice(-4) === '.gif') {
-      isVid = false;
-   } else {
-      isVid = true;
-   }
+          <input value={curDate} title='Pick a Date to View Another Image' onChange={(e) => { change(e) }} type='date' id='dat' />
 
-   if (!title) {
-      return <h3>Loading ...</h3>
-   } else {
-      return (
-         <Application>
-            <div className='cover'></div>
-            <h1>Nasa: Astronomy Picture of the Day.</h1>
-            <form className='dateCont'>
-               <span className='dateTitle'>Change Date: </span>
-               <input value= {curDate} title='Pick a Date to View Another Image' onChange={(e) => { change(e) }} type='date' id='dat' />
-               <span onClick= { (e) => {getRandomImage()} } className= 'randomButton'>Random Date & Image</span>
-               <div className='errorCont'>{errMessage}</div>
-            </form>
+          {/* <span onClick={(e) => { changeImage() }} className='randomButton'>Random Date & Image</span> */}
 
-            <div className="mainContent">
-               <Media isVid={isVid} date={curDate} imgUrl={imgUrl} hdUrl={hdUrl} copy={copy} />
-               <Info title={title} expl={expl} />
-            </div>
+          <div className='errorCont'>{errMessage}</div>
+        </form>
 
-         </Application>
-      );
+        <div className="mainContent">
+          <Media isVid={isVid} date={curDate} imgUrl={imgUrl} hdUrl={hdUrl} copy={copy} />
+          <Info title={title} expl={expl} />
+        </div>
 
-   }//end if
+      </Application>
+    );
+
+
 }//end func
 
 export default App;

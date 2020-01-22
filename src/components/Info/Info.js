@@ -29,12 +29,12 @@ const InfoCont = styled.div`
 
 function Info(props) {
 
-   return (
-      <InfoCont>
-         <h2>{props.title}</h2>
-         <p>{props.expl}</p>
-      </InfoCont>
-   );
+  return (
+    <InfoCont>
+      <h2>{props.title}</h2>
+      <p>{props.expl}</p>
+    </InfoCont>
+  );
 }//end func
 
 export default Info
