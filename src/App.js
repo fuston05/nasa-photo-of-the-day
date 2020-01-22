@@ -98,6 +98,8 @@ const Application = styled.div`
    padding: 0.5% 1%;
    margin: 0 0 0 10px;
    border-radius: 5px;
+   font-size: 1rem;
+
    &:hover{
       cursor: pointer;
       opacity: 0.8;
