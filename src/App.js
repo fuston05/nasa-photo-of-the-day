@@ -11,7 +11,7 @@ import styled from '@emotion/styled';
 const Application = styled.div` 
    max-width: 100%;
    width: 100%;
-   padding: 2%;
+   padding: 2% 2% 0 2%;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -38,27 +38,6 @@ const Application = styled.div`
    margin: 0 0 3% 0;
    text-shadow: 1px 1px #666;
    }
-
-.App-logo {
-   animation: App-logo-spin infinite 20s linear;
-   height: 40vmin;
-   pointer-events: none;
-}
-
-.App-header {
-   background-color: #282c34;
-   min-height: 100vh;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   font-size: calc(10px + 2vmin);
-   color: white;
-}
-
-.App-link {
-   color: #61dafb;
-}
 
 .dateCont{
    width: 100%;

@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 const InfoCont = styled.div`
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
     max-width: 100%;
-    width: 50%;
+    width: 55%;
 
     @media only screen and (max-width: 600px){
             width: 100%;
@@ -14,6 +14,7 @@ const InfoCont = styled.div`
     h2{
         color: #333;
         padding: 1%;
+        margin-top: -1%;
         background-color: rgba(200, 200, 255, 0.6);
         border-radius: 5px;
     }
