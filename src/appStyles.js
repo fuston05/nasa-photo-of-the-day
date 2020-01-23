@@ -6,8 +6,8 @@ const MainCont= styled.div`
   justify-content: center;
   align-items: flex-start;
 
-  @media only screen and (max-width: 600px){
-    flex-direction: column-reverse;    
+  @media only screen and (max-width: 800px){
+    flex-direction: column;    
   }
 `;
 
@@ -80,9 +80,17 @@ const DevInfoCont= styled.div`
   z-index: 2;
   opacity: 0.9;
 
+  @media only screen and (max-width: 800px){
+    width: 90%;
+  }
+
   p{
     font-size: 1.2rem;
     opacity: 0;
+
+    @media only screen and (max-width: 800px){
+      font-size: 1.3rem;
+    }
   }
 `;
 

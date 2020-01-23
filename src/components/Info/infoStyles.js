@@ -5,9 +5,9 @@ font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 max-width: 100%;
 width: 55%;
 
-@media only screen and (max-width: 600px){
-        width: 100%;
-}
+  @media only screen and (max-width: 800px){
+    width: 100%;
+  }
 
 h2{
     color: #333;
@@ -25,6 +25,5 @@ p{
     border-radius: 5px;
 }
 `;
-
 
 export default InfoCont;
