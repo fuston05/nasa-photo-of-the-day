@@ -20,7 +20,7 @@ import {
 } from './appStyles';
 
 function App() {
-  //get current Date
+  //get current Date to set initial date and image states on load
   let newDate = new Date();
   let yr = newDate.getFullYear().toString();
   let mon = (newDate.getMonth() + 1).toString().padStart(2, '0');
@@ -40,7 +40,7 @@ function App() {
   const [title, setTitle] = useState('');
   const [errMessage, setErrMessage] = useState('');
 
-  // ******** functions ************
+  // ***************** functions *********************
   //get a random day/month/year
   function getRandomDate() {
     //vars for getting random date
@@ -143,13 +143,15 @@ function App() {
   }
 
   return (
-    <Application>
+    <Application> 
+      {/* button for Dev info. for portfolio use */}
       <DevButton onClick={displayDevInfo} className='devInfo'>Dev Info</DevButton>
       <DevInfoCont className='devInfoText'>
         <p>
           This site is built using React JS. Styles are done using Styled-Components. This application fetches the images from the <a rel="noopener noreferrer" href='https://api.nasa.gov/' target='_blank'>NASA APOD API</a> using the Axios library. The background image is randomly chosen from the API when the page loads or is refreshed. You can select a date using the HTML5 date picker to trigger the API call and update the image and information. You can also click the 'Random Date and Image' button to generate a random date and therefore fetch a random image. Further, the image displayed is also a link to the larger HD version of itself. Animations were done using the <a rel="noopener noreferrer" href='greensock.com' target='_blank'>GreenSock</a> animation library.
         </p>
       </DevInfoCont>
+      {/* BgMask is a black translucent overlay of entire bg image so text is still readable */}
       <BgMask className='cover'></BgMask>
       <Heading1>Nasa: Astronomy Picture of the Day.</Heading1>
       <Form className='dateCont'>
@@ -160,6 +162,7 @@ function App() {
         <span>
           <RandomButton className='randomButton' onClick={(e) => { changeDate(e) }}>Random Date & Image</RandomButton>
         </span>
+        {/* for displaying any api errors */}
         <ErrCont className='errorCont'>{errMessage}</ErrCont>
       </Form>
 
