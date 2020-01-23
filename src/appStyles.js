@@ -72,7 +72,7 @@ const DevInfoCont= styled.div`
   background-color: black;
   height: 0px;
   padding: 0px;
-  width: 40%;
+  width: 0%;
   border-radius: 5px;
   position: absolute;
   left: 10px;

@@ -79,6 +79,9 @@ function App() {
   function fadeOut() {
     // when closing the devButton takes padding away so dev button will be hidden all the way
     gsap.to('.devInfoText', { padding: '0px', duration: 0.5, ease: 'power1.in' });
+    gsap.to('.devInfoText', { width: '0px', duration: 1, ease: 'power1.in' });
+    // const devPara= document.querySelector('.devInfoText p');
+    // devPara.style.display= 'none';
   }
 
   function displayDevInfo(e) { //opens the devInfo panel
@@ -86,6 +89,7 @@ function App() {
     if (element.height == '0px') { //if devInfo is not already open, open it
       gsap.to('.devInfoText', { padding: '15px', duration: 0.5, ease: 'power2.out' });
       gsap.to('.devInfoText', { height: '100%', duration: 0.8, ease: 'power2.out', onComplete: fadeIn() });
+      gsap.to('.devInfoText', { width: '40%', duration: 0.6, ease: 'power1.out' });
 
     } else { //if devInfo panel is already open, close it
       gsap.to('.devInfoText', { height: '0', duration: 0.8, ease: 'power1.in', onComplete: fadeOut() });
