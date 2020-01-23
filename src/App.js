@@ -4,156 +4,20 @@ import {gsap} from 'gsap';
 
 import Media from './components/Image/Media';
 import Info from './components/Info/Info';
-// import styled from 'styled-components';
 
-import styled from '@emotion/styled';
-
-//same code for Emotion and styled components
-const Application = styled.div` 
-   max-width: 100%;
-   width: 100%;
-   padding: 2% 2%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: space-evenly;
-   position: relative;
-
-  input[type= 'date']{
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    ::-webkit-datetime-edit { padding: 0px; }
-    ::-webkit-datetime-edit-fields-wrapper {  }
-    ::-webkit-datetime-edit-text { color: red; padding: 0 0; }
-    ::-webkit-datetime-edit-month-field { color: green; }
-    ::-webkit-datetime-edit-day-field { color: green; }
-    ::-webkit-datetime-edit-year-field { color: green; }
-    ::-webkit-inner-spin-button { display: none; }
-    ::-webkit-clear-button {display: none;}
-    ::-webkit-calendar-picker-indicator { 
-      background: dodgerBlue; 
-      padding: 5px; 
-      margin-left: 10px; 
-      border-radius: 50%;
-    }
-  }
-
-   iframe{
-      z-index: 2;
-   }
-
-.errorCont{
-   padding-top: 1%;
-   width: 100%;
-   text-align: center;
-   color: red;
-}
-
-.mainContent{
-   display: flex;
-   flex-direction: row-reverse;
-   justify-content: space-evenly;
-   align-items: flex-start;
-
-   @media only screen and (max-width: 600px){
-      flex-direction: column-reverse;    
-   }
-}
-`;
-
-const DevButton= styled.button`
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 1rem;
-  padding: 2px 3px;
-  border-radius: 3px;
-
-  &:hover{
-    cursor: pointer;
-    opacity: 0.8;
-  }
-`;
-
-const DevInfoCont= styled.div`
-  color: white;
-  background-color: black;
-  height: 0px;
-  padding: 0px;
-  width: 40%;
-  border-radius: 5px;
-  position: absolute;
-  left: 10px;
-  top: 50px;
-  z-index: 2;
-  opacity: 0.9;
-
-  p{
-    opacity: 0;
-  }
-`;
-
-const BgMask= styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  max-height: 100vh;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: -1;
-`;
-
-const Heading1= styled.h1`
-  color: #eee;
-  margin: 0 0 3% 0;
-  text-shadow: 1px 1px #666;
-`;
-
-const Form= styled.form`
-  width: 100%;
-  text-align: center;
-  margin-bottom: 2%;
-  position: relative;
-  padding: 0 0 2% 0
-`;
-
-const DateTitle= styled.span`
-  color: #999;
-  background-color: rgba(0, 0, 0, 0.6);
-  padding: 0.5% 1%;
-  margin-right: 5px;
-  border-radius: 5px;
-`;
-
-const DateContInput= styled.input`
-    padding: 3px;
-    font-size: 1.2rem;
- 
-    &:hover{
-     cursor: pointer;
-    }
-  `;
-
-  const RandomButton= styled.button`
-    color: #ddd;
-    background-color: blue;
-    padding: 0.5% 1%;
-    margin: 0 0 0 2%;
-    border-radius: 5px;
-    font-size: 1rem;
- 
-    &:hover{
-       cursor: pointer;
-       opacity: 0.8;
-       color: #eee;
-    }
-  `;
-
-
-
-
+import { 
+  Application, 
+  DevButton, 
+  BgMask,
+  DevInfoCont,
+  DateTitle,
+  Form,
+  Heading1,
+  RandomButton,
+  DateContInput,
+  ErrCont,
+  MainCont  
+} from './appStyles';
 
 function App() {
   let newDate = new Date(); //get current Date
@@ -189,7 +53,7 @@ function App() {
     return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
   }//end getRandomDate
 
-  useEffect(() => {
+  useEffect(() => { //runs when date is changed/sets initial image for today
     axios
       .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${curDate}`)
       .then(resu => {
@@ -225,7 +89,9 @@ function App() {
   }, []);
 
   function changeDate(e) {
+    //disable button until complete to prevent spamming which causes a loop effect
     document.querySelector('.randomButton').setAttribute('disabled', true);
+    //change date will fire the useEffect and change image
     setCurDate(getRandomDate());
   }
 
@@ -236,25 +102,27 @@ function App() {
   }//end func
 
   function fadeIn(){
+    // when opening the devButton fades text in
     gsap.to('.devInfoText p', {opacity: '1', duration: 1, ease: 'power2.in'});
   }
   function fadeOut(){
+    // when closing the devButton takes padding away so dev button will be hidden all the way
     gsap.to('.devInfoText', {padding: '0px', duration: 0.5, ease: 'power1.in'});
   }
 
-  function displayDevInfo(e){
+  function displayDevInfo(e){ //opens the devInfo panel
     let element= window.getComputedStyle(text);
-    if( element.height == '0px' ){
+    if( element.height == '0px' ){ //if devInfo is not already open, open it
       gsap.to('.devInfoText', {padding: '15px', duration: 0.5, ease: 'power2.out'});
       gsap.to('.devInfoText', {height: '100%', duration: 0.8, ease: 'power2.out', onComplete: fadeIn()});
 
-    }else{
+    }else{ //if devInfo panel is already open, close it
       gsap.to('.devInfoText', {height: '0', duration: 0.8, ease: 'power1.in', onComplete: fadeOut()});
       gsap.to('.devInfoText p', {opacity: '0', duration: 0.7, ease: 'power2.out'});
     }
   }
 
-  //check if img or vid
+  //check if img or vid is returned
   let isVid = false;
   if (imgUrl.slice(-4) === '.jpg' ||
     imgUrl.slice(-4) === '.gif' ||
@@ -282,17 +150,15 @@ function App() {
         <span>
           <RandomButton className='randomButton' onClick={(e) => { changeDate(e) }}>Random Date & Image</RandomButton>
         </span>
-        <div className='errorCont'>{errMessage}</div>
+        <ErrCont className='errorCont'>{errMessage}</ErrCont>
       </Form>
 
-      <div className="mainContent">
+      <MainCont className="mainContent">
         <Media isVid={isVid} date={curDate} imgUrl={imgUrl} hdUrl={hdUrl} copy={copy} />
         <Info title={title} expl={expl} />
-      </div>
+      </MainCont>
     </Application>
   );
-
-
 }//end func
 
 export default App;

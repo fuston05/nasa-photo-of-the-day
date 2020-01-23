@@ -1,6 +1,7 @@
 import React from 'react';
 // import styled from 'styled-components';
 import styled from '@emotion/styled';
+import mediaStyles from './mediaStyles';
 
 const MediaCont = styled.div`
    max-width: 100%;
@@ -23,37 +24,30 @@ const MediaCont = styled.div`
       opacity: 0.8;
       }
    }
-
-   iframe{
-      max-width: 100%;
-      margin: 0 auto;
-   }
-
    img{
       max-width: 100%;
       width: 100%;
       height: auto;
    }
+`;
 
-   .copy{
-      position: absolute;
-      bottom: 5px;
-      left: 5px;
-      color: white;
-      padding: 1%;
-      background-color: rgba(0, 0, 0, 0.6);
-      border-radius: 5xp;
-      font-size: 0.5rem;
+const Iframe= styled.iframe`
+  max-width: 100%;
+  margin: 0 auto;
+`;
 
-      @media only screen and (max-width: 600px){
-         font-size: 1rem;
-      }
-   }
+const Copy= styled.span`
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  padding: 1% 1.4%;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5xp;
+  font-size: 0.8rem;
 
-   .errorCont{
-      color: red;
-      padding: 2px;
-   }
+  @media only screen and (max-width: 600px){
+    font-size: 1rem;
+  }
 `;
 
 function Media(props) {
@@ -63,9 +57,9 @@ function Media(props) {
     return (
 
       <MediaCont>
-        <iframe title='Video Player' width="420" height="315"
+        <Iframe title='Video Player' width="420" height="315"
           src={props.imgUrl}>
-        </iframe>
+        </Iframe>
       </MediaCont>
     );
 
@@ -74,7 +68,7 @@ function Media(props) {
     return (
       <MediaCont>
         <a title='Click to View HD Image' href={props.hdUrl} target='_blank' rel='noopener noreferrer'>
-          <span className='copy'>Copyright &copy; {props.date} {props.copy}</span>
+          <Copy className='copy'>Copyright &copy; {props.date} {props.copy}</Copy>
           <img alt='Nasa' src={props.imgUrl} />
         </a>
       </MediaCont>

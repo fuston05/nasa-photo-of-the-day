@@ -1,13 +1,10 @@
 import React from 'react';
 // import styled from 'styled-components';
-import InfoCont from './infoStyles';
+// import InfoCont from './infoStyles';
 import { Container, Row, Col } from 'reactstrap';
 import './styles.css';
 
-
-
 function Info(props) {
-
   return (
     <Container className= 'themed-container'>
       <Row>
