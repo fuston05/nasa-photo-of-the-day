@@ -12,7 +12,7 @@ import styled from '@emotion/styled';
 const Application = styled.div` 
    max-width: 100%;
    width: 100%;
-   padding: 2% 0 0 0;
+   padding: 2% 2%;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -23,9 +23,9 @@ const Application = styled.div`
     border-radius: 5px;
     outline: none;
     border: none;
-    ::-webkit-datetime-edit { padding: 5px; }
+    ::-webkit-datetime-edit { padding: 0px; }
     ::-webkit-datetime-edit-fields-wrapper {  }
-    ::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
+    ::-webkit-datetime-edit-text { color: red; padding: 0 0; }
     ::-webkit-datetime-edit-month-field { color: green; }
     ::-webkit-datetime-edit-day-field { color: green; }
     ::-webkit-datetime-edit-year-field { color: green; }
@@ -33,7 +33,7 @@ const Application = styled.div`
     ::-webkit-clear-button {display: none;}
     ::-webkit-calendar-picker-indicator { 
       background: dodgerBlue; 
-      padding: 8px; 
+      padding: 5px; 
       margin-left: 10px; 
       border-radius: 50%;
     }
@@ -66,6 +66,9 @@ const DevButton= styled.button`
   position: absolute;
   top: 10px;
   left: 10px;
+  font-size: 1rem;
+  padding: 2px 3px;
+  border-radius: 3px;
 
   &:hover{
     cursor: pointer;
@@ -82,7 +85,7 @@ const DevInfoCont= styled.div`
   border-radius: 5px;
   position: absolute;
   left: 10px;
-  top: 30px;
+  top: 50px;
   z-index: 2;
   opacity: 0.9;
 
@@ -243,7 +246,7 @@ function App() {
     let element= window.getComputedStyle(text);
     if( element.height == '0px' ){
       gsap.to('.devInfoText', {padding: '15px', duration: 0.5, ease: 'power2.out'});
-      gsap.to('.devInfoText', {height: '280px', duration: 0.8, ease: 'power2.out', onComplete: fadeIn()});
+      gsap.to('.devInfoText', {height: '100%', duration: 0.8, ease: 'power2.out', onComplete: fadeIn()});
 
     }else{
       gsap.to('.devInfoText', {height: '0', duration: 0.8, ease: 'power1.in', onComplete: fadeOut()});
