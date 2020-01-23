@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import {gsap} from 'gsap';
 
 import Media from './components/Image/Media';
 import Info from './components/Info/Info';
@@ -18,10 +19,38 @@ const Application = styled.div`
    justify-content: space-evenly;
    position: relative;
 
+   button.devInfo{
+     position: absolute;
+     top: 10px;
+     left: 10px;
+
+     &:hover{
+       cursor: pointer;
+       opacity: 0.8;
+     }
+   }
+
+   .devInfoText{
+    color: white;
+    background-color: black;
+    height: 0px;
+    padding: 0px;
+    width: 40%;
+    border-radius: 5px;
+    position: absolute;
+    left: 10px;
+    top: 30px;
+    z-index: 2;
+    opacity: 0.9;
+
+    p{
+      opacity: 0;
+    }
+   }
+
   input[type= 'date']{
     border-radius: 5px;
     outline: none;
-    margin-left: 1.5%;
     border: none;
     ::-webkit-datetime-edit { padding: 5px; }
     ::-webkit-datetime-edit-fields-wrapper {  }
@@ -120,11 +149,13 @@ const Application = styled.div`
 `;
 
 function App() {
-  let newDate= new Date(); //get current Date
-  let yr= newDate.getFullYear().toString();
-  let mon= (newDate.getMonth()+1).toString().padStart(2, '0');
-  let day= newDate.getDate().toString();
-  let formattedDate= `${yr}-${mon.padStart(2, '0')}-${day.padStart(2, '0')}`;
+  let newDate = new Date(); //get current Date
+  let yr = newDate.getFullYear().toString();
+  let mon = (newDate.getMonth() + 1).toString().padStart(2, '0');
+  let day = newDate.getDate().toString();
+  let formattedDate = `${yr}-${mon.padStart(2, '0')}-${day.padStart(2, '0')}`;
+
+  let text= document.querySelector('.devInfoText');
 
   const [imgUrl, setImgUrl] = useState('');
   const [hdUrl, setHdUrl] = useState('');
@@ -151,7 +182,7 @@ function App() {
     return `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
   }//end getRandomDate
 
-  useEffect( () => {
+  useEffect(() => {
     axios
       .get(`https://api.nasa.gov/planetary/apod?api_key=v8su2RncIsyRc8ZbQbgNobp0ndXwjixQPURTlhTc&date=${curDate}`)
       .then(resu => {
@@ -170,7 +201,7 @@ function App() {
         console.log('API Error: ', err.response.status);
         setErrMessage('There may not be a photo for this day, try again.');
       })
-    }, [curDate])
+  }, [curDate])
 
   useEffect(() => { //set initial state of BG image..
     window.onload =
@@ -186,7 +217,7 @@ function App() {
         });
   }, []);
 
-  function changeDate(e){
+  function changeDate(e) {
     document.querySelector('.randomButton').setAttribute('disabled', true);
     setCurDate(getRandomDate());
   }
@@ -197,38 +228,63 @@ function App() {
     setCurDate(e.target.value);
   }//end func
 
+  function fadeIn(){
+    gsap.to('.devInfoText p', {opacity: '1', duration: 1, ease: 'power2.in'});
+  }
+  function fadeOut(){
+    gsap.to('.devInfoText', {padding: '0px', duration: 0.5, ease: 'power1.in'});
+  }
+
+  function displayDevInfo(e){
+    let element= window.getComputedStyle(text);
+    if( element.height == '0px' ){
+      gsap.to('.devInfoText', {padding: '15px', duration: 0.5, ease: 'power2.out'});
+      gsap.to('.devInfoText', {height: '280px', duration: 0.8, ease: 'power2.out', onComplete: fadeIn()});
+
+    }else{
+      gsap.to('.devInfoText', {height: '0', duration: 0.8, ease: 'power1.in', onComplete: fadeOut()});
+      gsap.to('.devInfoText p', {opacity: '0', duration: 0.7, ease: 'power2.out'});
+    }
+  }
+
   //check if img or vid
   let isVid = false;
-  if (imgUrl.slice(-4) === '.jpg' || 
-    imgUrl.slice(-4) === '.gif' || 
+  if (imgUrl.slice(-4) === '.jpg' ||
+    imgUrl.slice(-4) === '.gif' ||
     imgUrl.slice(-4) === '.png') {
     isVid = false;
   } else {
     isVid = true;
   }
 
-    return (
-      <Application>
-        <div className='cover'></div>
-        <h1>Nasa: Astronomy Picture of the Day.</h1>
-        <form className='dateCont'>
-          <span className='dateTitle'>Change Date: </span>
+  return (
+    <Application>
+      <button onClick= { displayDevInfo } className= 'devInfo'>Dev Info</button>
+      <div className= 'devInfoText'>
+        <p>
+          This site is built using React JS using Styled-Components. It fetches the images from the <a rel="noopener noreferrer" href= 'https://api.nasa.gov/' target= '_blank'>NASA APOD API</a> using the Axios library. The background image is randomly chosen from the API when the page loads or is refreshed. You can select a date using the HTML5 date picker to trigger the API call and update the image and infomation. You can also click the 'random date and image' button to generate a random date and therfore fetch a random image. Further, the image displayed is also a link to the larger HD version of itself. Animations were done using the <a rel="noopener noreferrer" href= 'greensock.com' target= '_blank'>GreenSock</a> animation library.
+        </p>
+      </div>
+      <div className='cover'></div>
+      <h1>Nasa: Astronomy Picture of the Day.</h1>
+      <form className='dateCont'>
+        <span className='dateTitle'>Change Date: </span>
 
-          <input className= 'datePicker' value= {curDate} title='Pick a Date to View Another Image' onChange={(e) => { change(e) }} type='date' id='dat' />
+        <input className='datePicker' value={curDate} title='Pick a Date to View Another Image' onChange={(e) => { change(e) }} type='date' id='dat' />
 
-          <span>
-            <button className='randomButton' onClick={(e) => { changeDate(e) }}>Random Date & Image</button>
-          </span>
-          <div className='errorCont'>{errMessage}</div>
-        </form>
+        <span>
+          <button className='randomButton' onClick={(e) => { changeDate(e) }}>Random Date & Image</button>
+        </span>
+        <div className='errorCont'>{errMessage}</div>
+      </form>
 
-        <div className="mainContent">
-          <Media isVid={isVid} date={curDate} imgUrl={imgUrl} hdUrl={hdUrl} copy={copy} />
-          <Info title={title} expl={expl} />
-        </div>
+      <div className="mainContent">
+        <Media isVid={isVid} date={curDate} imgUrl={imgUrl} hdUrl={hdUrl} copy={copy} />
+        <Info title={title} expl={expl} />
+      </div>
 
-      </Application>
-    );
+    </Application>
+  );
 
 
 }//end func
