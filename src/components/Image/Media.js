@@ -6,7 +6,7 @@ const MediaCont = styled.div`
    max-width: 100%;
    width: 35%;
    position: relative;
-   box-shadow: 2px 2px 2px #333;
+   box-shadow: 2px 2px 5px #000;
    text-align: center;
 
    @media only screen and (max-width: 600px){
