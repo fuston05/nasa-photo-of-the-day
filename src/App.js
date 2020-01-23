@@ -19,13 +19,6 @@ const Application = styled.div`
    justify-content: space-evenly;
    position: relative;
 
-   
-
-   
-
-    
-   
-
   input[type= 'date']{
     border-radius: 5px;
     outline: none;
@@ -45,17 +38,6 @@ const Application = styled.div`
       border-radius: 50%;
     }
   }
-
-   .cover{
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      max-height: 100vh;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: -1;
-   } 
 
    iframe{
       z-index: 2;
@@ -153,6 +135,17 @@ const DevInfoCont= styled.div`
   p{
     opacity: 0;
   }
+`;
+
+const BgMask= styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -1;
 `;
 
 function App() {
@@ -272,7 +265,7 @@ function App() {
           This site is built using React JS. Styles are done using Styled-Components. This application fetches the images from the <a rel="noopener noreferrer" href= 'https://api.nasa.gov/' target= '_blank'>NASA APOD API</a> using the Axios library. The background image is randomly chosen from the API when the page loads or is refreshed. You can select a date using the HTML5 date picker to trigger the API call and update the image and information. You can also click the 'Random Date and Image' button to generate a random date and therefore fetch a random image. Further, the image displayed is also a link to the larger HD version of itself. Animations were done using the <a rel="noopener noreferrer" href= 'greensock.com' target= '_blank'>GreenSock</a> animation library.
         </p>
       </DevInfoCont>
-      <div className='cover'></div>
+      <BgMask className='cover'></BgMask>
       <h1>Nasa: Astronomy Picture of the Day.</h1>
       <form className='dateCont'>
         <span className='dateTitle'>Change Date: </span>
