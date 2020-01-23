@@ -12,7 +12,7 @@ import styled from '@emotion/styled';
 const Application = styled.div` 
    max-width: 100%;
    width: 100%;
-   padding: 2% 2% 0 2%;
+   padding: 2% 0 0 0;
    display: flex;
    flex-direction: column;
    align-items: center;
@@ -43,57 +43,11 @@ const Application = styled.div`
       z-index: 2;
    }
 
-   h1{
-   color: #eee;
-   margin: 0 0 3% 0;
-   text-shadow: 1px 1px #666;
-   }
-
-.dateCont{
-   width: 100%;
-   text-align: center;
-   margin-bottom: 2%;
-   position: relative;
-   padding: 0 0 2% 0
-}
-
-.dateTitle{
-   color: #999;
-   background-color: rgba(0, 0, 0, 0.6);
-   padding: 0.5% 1%;
-   margin-right: 5px;
-   border-radius: 5px;
-}
-
-.dateCont input{
-   padding: 3px;
-   font-size: 1.2rem;
-}
-
-.dateCont input:hover{
-   cursor: pointer;
-}
-
 .errorCont{
    padding-top: 1%;
    width: 100%;
    text-align: center;
    color: red;
-}
-
-.randomButton{
-   color: #ddd;
-   background-color: blue;
-   padding: 0.5% 1%;
-   margin: 0 0 0 2%;
-   border-radius: 5px;
-   font-size: 1rem;
-
-   &:hover{
-      cursor: pointer;
-      opacity: 0.8;
-      color: #eee;
-   }
 }
 
 .mainContent{
@@ -108,7 +62,7 @@ const Application = styled.div`
 }
 `;
 
-const Button= styled.button`
+const DevButton= styled.button`
   position: absolute;
   top: 10px;
   left: 10px;
@@ -147,6 +101,56 @@ const BgMask= styled.div`
   background-color: rgba(0, 0, 0, 0.7);
   z-index: -1;
 `;
+
+const Heading1= styled.h1`
+  color: #eee;
+  margin: 0 0 3% 0;
+  text-shadow: 1px 1px #666;
+`;
+
+const Form= styled.form`
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2%;
+  position: relative;
+  padding: 0 0 2% 0
+`;
+
+const DateTitle= styled.span`
+  color: #999;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0.5% 1%;
+  margin-right: 5px;
+  border-radius: 5px;
+`;
+
+const DateContInput= styled.input`
+    padding: 3px;
+    font-size: 1.2rem;
+ 
+    &:hover{
+     cursor: pointer;
+    }
+  `;
+
+  const RandomButton= styled.button`
+    color: #ddd;
+    background-color: blue;
+    padding: 0.5% 1%;
+    margin: 0 0 0 2%;
+    border-radius: 5px;
+    font-size: 1rem;
+ 
+    &:hover{
+       cursor: pointer;
+       opacity: 0.8;
+       color: #eee;
+    }
+  `;
+
+
+
+
 
 function App() {
   let newDate = new Date(); //get current Date
@@ -259,30 +263,29 @@ function App() {
 
   return (
     <Application>
-      <Button onClick= { displayDevInfo } className= 'devInfo'>Dev Info</Button>
+      <DevButton onClick= { displayDevInfo } className= 'devInfo'>Dev Info</DevButton>
       <DevInfoCont className= 'devInfoText'>
         <p>
           This site is built using React JS. Styles are done using Styled-Components. This application fetches the images from the <a rel="noopener noreferrer" href= 'https://api.nasa.gov/' target= '_blank'>NASA APOD API</a> using the Axios library. The background image is randomly chosen from the API when the page loads or is refreshed. You can select a date using the HTML5 date picker to trigger the API call and update the image and information. You can also click the 'Random Date and Image' button to generate a random date and therefore fetch a random image. Further, the image displayed is also a link to the larger HD version of itself. Animations were done using the <a rel="noopener noreferrer" href= 'greensock.com' target= '_blank'>GreenSock</a> animation library.
         </p>
       </DevInfoCont>
       <BgMask className='cover'></BgMask>
-      <h1>Nasa: Astronomy Picture of the Day.</h1>
-      <form className='dateCont'>
-        <span className='dateTitle'>Change Date: </span>
+      <Heading1>Nasa: Astronomy Picture of the Day.</Heading1>
+      <Form className='dateCont'>
+        <DateTitle className='dateTitle'>Change Date: </DateTitle>
 
-        <input className='datePicker' value={curDate} title='Pick a Date to View Another Image' onChange={(e) => { change(e) }} type='date' id='dat' />
+        <DateContInput className='datePicker' value={curDate} title='Pick a Date to View Another Image' onChange={(e) => { change(e) }} type='date' id='dat' />
 
         <span>
-          <button className='randomButton' onClick={(e) => { changeDate(e) }}>Random Date & Image</button>
+          <RandomButton className='randomButton' onClick={(e) => { changeDate(e) }}>Random Date & Image</RandomButton>
         </span>
         <div className='errorCont'>{errMessage}</div>
-      </form>
+      </Form>
 
       <div className="mainContent">
         <Media isVid={isVid} date={curDate} imgUrl={imgUrl} hdUrl={hdUrl} copy={copy} />
         <Info title={title} expl={expl} />
       </div>
-
     </Application>
   );
 
