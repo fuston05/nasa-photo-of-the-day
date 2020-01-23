@@ -262,7 +262,7 @@ function App() {
       <button onClick= { displayDevInfo } className= 'devInfo'>Dev Info</button>
       <div className= 'devInfoText'>
         <p>
-          This site is built using React JS using Styled-Components. It fetches the images from the <a rel="noopener noreferrer" href= 'https://api.nasa.gov/' target= '_blank'>NASA APOD API</a> using the Axios library. The background image is randomly chosen from the API when the page loads or is refreshed. You can select a date using the HTML5 date picker to trigger the API call and update the image and infomation. You can also click the 'random date and image' button to generate a random date and therfore fetch a random image. Further, the image displayed is also a link to the larger HD version of itself. Animations were done using the <a rel="noopener noreferrer" href= 'greensock.com' target= '_blank'>GreenSock</a> animation library.
+          This site is built using React JS. Styles are done using Styled-Components. This application fetches the images from the <a rel="noopener noreferrer" href= 'https://api.nasa.gov/' target= '_blank'>NASA APOD API</a> using the Axios library. The background image is randomly chosen from the API when the page loads or is refreshed. You can select a date using the HTML5 date picker to trigger the API call and update the image and information. You can also click the 'Random Date and Image' button to generate a random date and therefore fetch a random image. Further, the image displayed is also a link to the larger HD version of itself. Animations were done using the <a rel="noopener noreferrer" href= 'greensock.com' target= '_blank'>GreenSock</a> animation library.
         </p>
       </div>
       <div className='cover'></div>
