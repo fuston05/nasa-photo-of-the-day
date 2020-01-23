@@ -18,6 +18,27 @@ const Application = styled.div`
    justify-content: space-evenly;
    position: relative;
 
+  input[type= 'date']{
+    border-radius: 5px;
+    outline: none;
+    margin-left: 1.5%;
+    border: none;
+    ::-webkit-datetime-edit { padding: 5px; }
+    ::-webkit-datetime-edit-fields-wrapper {  }
+    ::-webkit-datetime-edit-text { color: red; padding: 0 0.3em; }
+    ::-webkit-datetime-edit-month-field { color: green; }
+    ::-webkit-datetime-edit-day-field { color: green; }
+    ::-webkit-datetime-edit-year-field { color: green; }
+    ::-webkit-inner-spin-button { display: none; }
+    ::-webkit-clear-button {display: none;}
+    ::-webkit-calendar-picker-indicator { 
+      background: dodgerBlue; 
+      padding: 8px; 
+      margin-left: 10px; 
+      border-radius: 50%;
+    }
+  }
+
    .cover{
       position: fixed;
       top: 0;
@@ -75,7 +96,7 @@ const Application = styled.div`
    color: #ddd;
    background-color: blue;
    padding: 0.5% 1%;
-   margin: 0 0 0 10px;
+   margin: 0 0 0 2%;
    border-radius: 5px;
    font-size: 1rem;
 
