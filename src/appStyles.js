@@ -105,7 +105,6 @@ const BgMask= styled.div`
   top: 0;
   left: 0;
   height: 100vh;
-  max-height: 100vh;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.7);
   z-index: -1;
@@ -127,6 +126,7 @@ const DevButton= styled.button`
 
 const Application = styled.div` 
   max-width: 100%;
+  overflow: hidden;
   width: 100%;
   padding: 2% 2%;
   display: flex;

@@ -146,6 +146,7 @@ function App() {
 
   return (
     <Application> 
+      <BgMask className='cover'></BgMask>
       {/* button for Dev info. for portfolio use */}
       <DevButton onClick={displayDevInfo} className='devInfo'>Dev Info</DevButton>
       <DevInfoCont className='devInfoText'>
@@ -154,7 +155,7 @@ function App() {
         </p>
       </DevInfoCont>
       {/* BgMask is a black translucent overlay of entire bg image so text is still readable */}
-      <BgMask className='cover'></BgMask>
+      
       <Heading1>Nasa: Astronomy Picture of the Day.</Heading1>
       <Form className='dateCont'>
         <DateTitle className='dateTitle'>Change Date: </DateTitle>
