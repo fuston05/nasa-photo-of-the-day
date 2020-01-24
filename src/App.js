@@ -80,8 +80,6 @@ function App() {
     // when closing the devButton takes padding away so dev button will be hidden all the way
     gsap.to('.devInfoText', { padding: '0px', duration: 0.5, ease: 'power1.in' });
     gsap.to('.devInfoText', { width: '0px', duration: 1, ease: 'power1.in' });
-    // const devPara= document.querySelector('.devInfoText p');
-    // devPara.style.display= 'none';
   }
 
   function displayDevInfo(e) { //opens the devInfo panel

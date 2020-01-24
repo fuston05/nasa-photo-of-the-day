@@ -7,7 +7,7 @@ const MainCont= styled.div`
   align-items: flex-start;
 
   @media only screen and (max-width: 800px){
-    flex-direction: column;    
+    flex-direction: column; 
   }
 `;
 
@@ -48,6 +48,11 @@ const Heading1= styled.h1`
   margin: 0 0 3% 0;
   font-size: 2rem;
   text-shadow: 1px 1px #666;
+
+  @media only screen and (max-width: 550px){
+    text-align-center;
+    margin: 4% 0;
+  }
 `;
 
 const Form= styled.form`
@@ -55,7 +60,12 @@ const Form= styled.form`
   text-align: center;
   margin-bottom: 2%;
   position: relative;
-  padding: 0 0 2% 0
+  padding: 0 0 2% 0;
+
+  @media only screen and (max-width: 550px){
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 const DateTitle= styled.span`
@@ -79,10 +89,6 @@ const DevInfoCont= styled.div`
   top: 40px;
   z-index: 2;
   opacity: 0.9;
-
-  @media only screen and (max-width: 800px){
-    width: 90%;
-  }
 
   p{
     font-size: 1.2rem;
@@ -146,6 +152,10 @@ const Application = styled.div`
       padding: 5px; 
       margin-left: 10px; 
       border-radius: 50%;
+    }
+    @media only screen and (max-width: 550px){
+      width: 50%;
+      margin: 2% auto;
     }
   }
 
