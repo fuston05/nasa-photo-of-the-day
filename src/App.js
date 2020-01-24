@@ -85,6 +85,7 @@ function App() {
   function displayDevInfo(e) { //opens the devInfo panel
     let element = window.getComputedStyle(text);
     if (element.height == '0px') { //if devInfo is not already open, open it
+      
       gsap.to('.devInfoText', { padding: '15px', duration: 0.5, ease: 'power2.out' });
       gsap.to('.devInfoText', { height: '100%', duration: 0.8, ease: 'power2.out', onComplete: fadeIn() });
       gsap.to('.devInfoText', { width: '40%', duration: 0.6, ease: 'power1.out' });

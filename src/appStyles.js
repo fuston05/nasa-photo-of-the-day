@@ -36,6 +36,10 @@ const RandomButton= styled.button`
   border-radius: 5px;
   font-size: 1.1rem;
 
+  @media only screen and (max-width: 550px){
+    margin: 0 auto;
+  }
+
   &:hover{
     cursor: pointer;
     opacity: 0.8;
@@ -51,7 +55,7 @@ const Heading1= styled.h1`
 
   @media only screen and (max-width: 550px){
     text-align-center;
-    margin: 4% 0;
+    margin: 6% 0 4% 0;
   }
 `;
 
@@ -117,6 +121,10 @@ const DevButton= styled.button`
   font-size: 0.8rem;
   padding: 0 5px;
   border-radius: 3px;
+  
+  @media only screen and (max-width: 550px){
+    opacity: 0.6;
+  }
 
   &:hover{
     cursor: pointer;
