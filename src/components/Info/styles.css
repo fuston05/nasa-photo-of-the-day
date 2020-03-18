@@ -1,0 +1,30 @@
+
+.themed-container{
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  max-width: 100%;
+  width: 65%;
+}
+
+.themed-container p{
+  font-size: 1.2rem;
+  color: #aaa;
+  padding: 2%;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+}
+
+.themed-container h2{
+  font-size: 1.5rem;
+  color: #333;
+  padding: 1%;
+  margin-top: -1%;
+  background-color: rgba(200, 200, 255, 0.7);
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 800px){
+  .themed-container{
+    width: 100%;
+  }
+}
+
