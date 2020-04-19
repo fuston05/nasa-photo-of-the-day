@@ -8,6 +8,7 @@ export const Media = ({imageObj}) => {
   return (
     <div className='mediaCont'>
       <img 
+        alt= 'nasa_image'
         src= {imageObj.url}
       />
     </div>
