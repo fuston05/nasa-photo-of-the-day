@@ -4,9 +4,7 @@
 
 body{
   font-family: 'Poppins', sans-serif;
-  height: 100vh;
   max-width: 100%;
-  overflow: hidden;
 }
 
 p{
@@ -27,7 +25,6 @@ a{
 h1{
   color: $h1Color;
   font-size: $h1Size;
-  font-family: 'Abril Fatface', cursive;
 }
 
 h2 {

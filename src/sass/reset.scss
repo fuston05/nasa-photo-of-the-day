@@ -8,8 +8,8 @@ Customized By: Scott Fuston - scott.a.fuston@gmail.com - scottfuston.com
 */
 
 *,
-*::before,
-*::after {
+*:before,
+*:after {
   box-sizing: border-box;
 }
 

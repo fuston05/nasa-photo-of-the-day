@@ -17,8 +17,8 @@ function App() {
   const momentDate= moment().format('YYYY-MM-DD');
 
   const [imageObj, setImageObj] = useState({});
-  const [date, setDate]= useState(momentDate);
   const [today]= useState(momentDate);
+  const [date, setDate]= useState(momentDate);
   const [isLoading, setIsLoading]= useState(false);
 
   //functions
@@ -60,7 +60,7 @@ function App() {
     console.log('randomDate: ', randomDate);
 
     setDate(randomDate);
-  }//end getRandomDate
+  }//end setRandomDate
   
   //get a new image from the api any time date changes
   useEffect(() => {
@@ -85,7 +85,6 @@ function App() {
         setSelectedDate={setSelectedDate}
         setRandomDate={setRandomDate}
       />
-      <div className='mainCont'>
 
         {isLoading ? <Loader /> :(
         <div className='contentCont'>
@@ -93,7 +92,6 @@ function App() {
           <Media imageObj={imageObj} />
         </div>)}
 
-      </div> {/* end mainCont */}
     </div> // end APP
   );
 }
