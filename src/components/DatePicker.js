@@ -8,6 +8,7 @@ export const DatePicker = ({today, date, setSelectedDate}) => {
   return (
     <div className= 'dateCont'>
       <input 
+        required pattern="\d{4}-\d{2}-\d{2}"
         onChange= {setSelectedDate}
         type= 'date'
         value= {date}
