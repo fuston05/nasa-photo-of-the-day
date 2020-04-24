@@ -1,7 +1,7 @@
 @import '../sass/vars.scss';
 @import '../sass/mix-ins.scss';
 
-.header{
+.header {
   @include dFlex(column, center, center);
   width: 100%;
   padding: 2% 2%;
@@ -9,18 +9,18 @@
   // background-color: rgba(0, 0, 0, 0.6);
   z-index: 15;
 
-  h1{
+  h1 {
     margin: 0 0 2% 0;
   }
 
-  .headerRow{
+  .headerRow {
     @include dFlex(row, space-evenly, center);
     width: 100%;
 
-    .buttonCont{
+    .buttonCont {
       width: 200px;
 
-      button{
+      button {
         @include buttonStyles;
       }
     }//end buttonCont
