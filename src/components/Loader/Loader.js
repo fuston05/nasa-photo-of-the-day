@@ -8,12 +8,12 @@ import './loader.scss';
 import LoaderImg from './images/loader.svg';
 
 // see the loaderReadMe file for 'image', 'text' and 'background' options
-const Loader = ({image, text, background}) => {
+const Loader = ({ image, text, background }) => {
   return (
-    <div className= 'loaderCont'>
-      {image ? <img className= {`loaderImg ${background}`} alt= 'loading' src= {image} /> : <img className= {`loaderImg ${background}`} alt= 'loading' src= {LoaderImg} />}
+    <div className='loaderCont'>
+      {image ? <img className={`loaderImg ${background}`} alt='loading' src={image} /> : <img className={`loaderImg ${background}`} alt='loading' src={LoaderImg} />}
 
-      {text ? <p className= 'loaderText'>{text}</p> : null}
+      {text ? <p className='loaderText'>{text}</p> : null}
     </div>
   )
 }

@@ -2,27 +2,27 @@
 @import './vars.scss';
 @import './mix-ins.scss';
 
-body{
+body {
   font-family: 'Poppins', sans-serif;
   max-width: 100%;
 }
 
-p{
+p {
   color: $pColor;
   font-size: $pSize;
 }
 
-a{
+a {
   color: $aColor;
   font-size: $aSize;
 
-  &:hover{
+  &:hover {
     cursor: pointer;
     opacity: 0.8;
   }
 }
 
-h1{
+h1 {
   color: $h1Color;
   font-size: $h1Size;
 }
@@ -49,7 +49,7 @@ h5 {
 
 // form styles //
 
-input{
+input {
   padding: 8px;
   border-radius: 5px;
   border: 1px solid #aaa;
@@ -58,14 +58,14 @@ input{
 
 }
 
-form{
+form {
 
-  label{
+  label {
     font-size: $pSize;
     color: $labelColor;
   }
 
-  button{
+  button {
     @include buttonStyles;
   }//end button
 }//end form

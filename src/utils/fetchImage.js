@@ -11,5 +11,4 @@ export const fetchImage= (date) => {
       console.log(err);
       return err;
     })
-
 }//end fetchImage
