@@ -1,5 +1,12 @@
+@import '../sass/vars.scss';
+
 .mediaCont {
   width: 40%;
+
+  @media ($tablet700){
+    width: 95%;
+    margin-bottom: 50px;
+  }
 
   img {
     width: 100%;

@@ -1,3 +1,10 @@
+@import '../sass/vars.scss';
+
 .textCont{
   width: 47%;
-}
+
+  @media ($tablet700){
+    width: 95%;
+  }
+
+}//end textCont

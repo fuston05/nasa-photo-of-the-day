@@ -15,5 +15,9 @@
 
   .contentCont {
     @include dFlex(row, space-evenly, flex-start);
+
+    @media only screen and (max-width: 700px){
+      @include dFlex(column-reverse, flex-start, center);
+    }
   }
 }//end App
