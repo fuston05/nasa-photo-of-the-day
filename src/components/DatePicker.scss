@@ -3,38 +3,39 @@
 .dateCont {
   width: 200px;
 
-  @media ($mobile550){
+  @media ($mobile550) {
     margin-bottom: 25px;
   }
 
-  input {
+  input[type=date] {
     font-size: $pSize;
     width: 100%;
     color: #000;
-  }
 
-  input::-webkit-datetime-edit-text{
-    color: #000;
-  }
 
-  input::-webkit-datetime-edit-month-field {
-    color: #000;
-  }
+    &::-webkit-datetime-edit-text {
+      color: #000;
+    }
 
-  input::-webkit-datetime-edit-day-field {
-    color: #000;
-  }
+    &::-webkit-datetime-edit-month-field {
+      color: #000;
+    }
 
-  input::-webkit-datetime-edit-year-field {
-    color: #000;
-  }
+    &::-webkit-datetime-edit-day-field {
+      color: #000;
+    }
 
-  input::-webkit-inner-spin-button {
-    display: none;
-  }
+    &::-webkit-datetime-edit-year-field {
+      color: #000;
+    }
 
-  input::-webkit-calendar-picker-indicator {
-    color: #333;
+    &::-webkit-inner-spin-button {
+      display: none;
+    }
+
+    &::-webkit-calendar-picker-indicator {
+      color: #333;
+    }
   }
 
 }
