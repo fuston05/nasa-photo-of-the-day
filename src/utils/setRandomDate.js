@@ -6,6 +6,7 @@ const randomNum = (min, max) => {
 
 export const setRandomDate = (today, date, setDate) => {
   //break down current year, month, and day
+  //'today', 'date', and 'setDate' come from App.js State
   const curYear = today.slice(0, 4);
   const curMonth = today.slice(5, 7);
   const curDay = today.slice(-2);
@@ -27,7 +28,7 @@ export const setRandomDate = (today, date, setDate) => {
     day = randomNum(1, curDay);
   }//end if year and month
 
-  //convert all values to a string & padStart for proper api format
+  //convert all values to a string & padStart for api format
   const randomDate = `${year.toString()}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
 
   setDate(randomDate);
