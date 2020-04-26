@@ -11,11 +11,19 @@
 
   h1 {
     margin: 0 0 2% 0;
-  }
+
+    @media ($mobile550){
+      text-align: center;
+    }
+  }//end h1
 
   .headerRow {
     @include dFlex(row, space-evenly, center);
     width: 100%;
+
+    @media ($mobile550){
+      @include dFlex(column, center, center);
+    }
 
     .buttonCont {
       width: 200px;
