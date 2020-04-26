@@ -11,8 +11,8 @@ export const setRandomDate = (today, date, setDate) => {
   const curMonth = today.slice(5, 7);
   const curDay = today.slice(-2);
 
-  //make a random year INT
-  let year = randomNum(2000, date.slice(0, 4));
+  //make a random year INT between 2000 and current year
+  let year = randomNum(1999, curYear);
 
   //limit month if year is current year
   //random month INT
