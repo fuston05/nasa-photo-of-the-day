@@ -3,25 +3,29 @@
 .dateCont {
   width: 200px;
 
+  @media ($mobile550){
+    margin-bottom: 25px;
+  }
+
   input {
     font-size: $pSize;
     width: 100%;
   }
 
   input::-webkit-datetime-edit-text {
-    color: #333;
+    color: #000;
   }
 
   input::-webkit-datetime-edit-month-field {
-    color: #333;
+    color: #000;
   }
 
   input::-webkit-datetime-edit-day-field {
-    color: #333;
+    color: #000;
   }
 
   input::-webkit-datetime-edit-year-field {
-    color: #333;
+    color: #000;
   }
 
   input::-webkit-inner-spin-button {
