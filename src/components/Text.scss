@@ -3,6 +3,11 @@
 .textCont{
   width: 47%;
 
+  h3{
+    font-style: italic;
+    font-weight: bold;
+  }
+
   @media ($tablet700){
     width: 95%;
   }
