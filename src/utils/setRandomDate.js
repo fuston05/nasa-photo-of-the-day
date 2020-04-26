@@ -18,11 +18,8 @@ export const setRandomDate = (today, date, setDate) => {
   //random month INT
   let month = randomNum(1, 12);
   if (parseInt(year) === parseInt(curYear)) {
-    console.log('same yr: ', year)
     month = randomNum(1, curMonth);
   }//end if year
-  console.log('month: ', month);
-  console.log('current month: ', curMonth);
 
   //limit day if year and month is current
   //random day INT
