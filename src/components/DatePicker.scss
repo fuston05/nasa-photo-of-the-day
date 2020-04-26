@@ -12,27 +12,33 @@
     width: 100%;
   }
 
-  input::-webkit-datetime-edit-text {
+  input::-webkit-datetime-edit-text,
+  datetime-edit-text{
     color: #000;
   }
 
-  input::-webkit-datetime-edit-month-field {
+  input::-webkit-datetime-edit-month-field,
+  datetime-edit-month-field {
     color: #000;
   }
 
-  input::-webkit-datetime-edit-day-field {
+  input::-webkit-datetime-edit-day-field,
+  datetime-edit-day-field {
     color: #000;
   }
 
-  input::-webkit-datetime-edit-year-field {
+  input::-webkit-datetime-edit-year-field,
+  datetime-edit-year-field {
     color: #000;
   }
 
-  input::-webkit-inner-spin-button {
+  input::-webkit-inner-spin-button,
+  inner-spin-button {
     display: none;
   }
 
-  input::-webkit-calendar-picker-indicator {
+  input::-webkit-calendar-picker-indicator,
+  calendar-picker-indicator {
     color: #333;
   }
 
