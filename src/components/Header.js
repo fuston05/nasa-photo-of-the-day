@@ -20,7 +20,7 @@ export const Header = ({ today, date, setDate, setSelectedDate, setRandomDate })
         />
         <div className='buttonCont'>
           <button
-            onClick={setRandomDate}>
+            onClick={() => {setRandomDate(today, date, setDate)}}>
             Random Date
             </button>
         </div> {/* end buttonCont*/}

@@ -14,6 +14,7 @@ export const DatePicker = ({ today, date, setSelectedDate }) => {
         value={date}
         min='2000-01-01'
         max={today}
+        data-testid= 'dateInput'
       />
     </div>
   )
