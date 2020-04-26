@@ -12,7 +12,7 @@ export const DatePicker = ({ today, date, setSelectedDate }) => {
         onChange={setSelectedDate}
         type='date'
         value={date}
-        min='2000-01-01'
+        min='1999-01-01'
         max={today}
         data-testid= 'dateInput'
       />
