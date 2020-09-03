@@ -19,7 +19,7 @@ export const setRandomDate = (today, date, setDate) => {
   let month = randomNum(1, 12);
   if (parseInt(year) === parseInt(curYear)) {
     month = randomNum(1, curMonth);
-  }//end if year
+  }//end if year  
 
   //limit day if year and month is current
   //random day INT

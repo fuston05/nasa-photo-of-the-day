@@ -1,12 +1,10 @@
 import React from 'react';
-import {render, fireEvent, getByTestId} from '@testing-library/react';
+import {render, fireEvent} from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 //components
 import App from '../App';
 import {Header} from '../components/Header';
-import {Text} from '../components/Text';
-import {Media} from '../components/Media';
 
 describe('header.js', () => {
 
@@ -40,21 +38,23 @@ describe('header random date button', () => {
   });
 
 
-  // it('should update the DOM with a new image and text when clicked', () => {
-  //   //start at 'App' lvl for state props access
+  // it('should render text title of image obj passed to it as props', () => {
+
   //   const imageObj= {
   //     title: 'image title'
   //   }
-  //   const {getByText} = render(<App/>);
+
   //   const {getByTestId} = render(<Text imageObj= {imageObj} />);
+  //   //renders title of an imageObj passed as props
+  //   expect(getByTestId('textTitle').innerHTML).toEqual('image title');
 
   //   //get text title
   //   const title= getByTestId('textTitle');
-  //   expect(title.value).toHaveLength(11)
-  //   console.log('title: ', title.innerText);
+  //   // expect(title.value).toHaveLength(11)
+  //   // console.log('title: ', title);
 
   //   //click button to get a new random date
-  //   fireEvent.click(getByText(/random date/i));
+  //   // fireEvent.click(getByText(/random date/i));
   // });
 
 });//end header random date button
