@@ -1,3 +1,11 @@
+## Project Description
+Team: Scott Fuston | Full-Stack Web Developer 2020
+
+Displays a photo-of-the-day along with a description from NASA APOD API. Featuring the ability to select a specific date or a random date, and display the image and description from that date.
+
+This application is built on ReactJs with Less styling, and uses the Axios library to fetch the data from the API.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
