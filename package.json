@@ -6,18 +6,18 @@
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.3",
     "@testing-library/user-event": "^10.1.0",
-    "axios": "^0.19.2",
+    "axios": "^1.20.0",
     "dotenv": "^8.2.0",
     "moment": "^2.24.0",
-    "node-sass": "^4.14.0",
+    "sass": "^1.77.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "node scripts/run-react-scripts.js start",
+    "build": "node scripts/run-react-scripts.js build",
+    "test": "node scripts/run-react-scripts.js test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

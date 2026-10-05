@@ -1,14 +1,15 @@
 import axios from 'axios';
-const apiKey= process.env.REACT_APP_API_KEY;
+const apiKey = "DEMO_KEY"
+const apiUrl = "https://science.nasa.gov/wp-json/wp/v2/apod-basic";
 
-export const fetchImage= (date) => {
+export const fetchImage = (date) => {
   return axios
-    .get(`https://api.nasa.gov/planetary/apod?api_key=${apiKey}&date=${date}`)
+    .get(`${apiUrl}?api_key=${apiKey}&date=${date}`)
     .then(res => {
-      return res.data;
+      return res.data[0];
     })
     .catch(err => {
-      console.log(err);
+      console.log('fetchImage err: ', err);
       return err;
     })
-}//end fetchImage
+}

@@ -4,7 +4,7 @@ import React from 'react';
 import './Media.scss';
 
 export const Media = ({ imageObj }) => {
-  const source = imageObj.url;
+  const source = imageObj.hdurl;
 
   return (
     <div className='mediaCont'>
@@ -28,7 +28,7 @@ export const Media = ({ imageObj }) => {
             //if it's an image show image
             <img
               alt='nasa_image'
-              src={imageObj.url}
+              src={source}
             />
         }
       </a>
