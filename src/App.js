@@ -8,7 +8,7 @@ import Loader from './components/Loader/Loader';
 
 //utils
 import { fetchImage } from './utils/fetchImage';
-import {setRandomDate} from './utils/setRandomDate';
+import { setRandomDate } from './utils/setRandomDate';
 
 //styles
 import './sass/app.scss';
@@ -36,7 +36,7 @@ function App() {
         setIsLoading(false);
       })
       .catch(err => {
-        console.log('err: ', err);
+        console.log('fetchImage err: ', err);
       })
 
   }, [date])
